@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多级联动封装</title>
+	<link href="./css/bootstrap.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script>
+	<script src="./js/duoji.js"></script>
+</head>
+<body>
+
+<div class="row" style="margin:100px auto;">
+	<div class="col-md-12" id="box"></div>  
+</div>
+<div class="row" style="margin:100px auto;">
+	<div class="col-md-12" id="box2"></div>  
+</div>
+
+<script>
+	//基础用法
+	$.select({boxName:'box'})
+	//详细配置
+	$.select({
+		boxName:'box2',
+		className:'area2',
+		url:'./area.php',
+		type:'get',	
+		dataType:'json',
+	})
+	
+	/*
+		boxName:'box',  	//容器名
+		className:'area',	//每个事件的定位class
+		url:'./area.php',	//请求的地址
+		type:'get',			//请求传输方式
+		dataType:'json',	//使用jsonp方式
+	*/
+	
+	
+	
+</script>
+
+</body>
+</html>
