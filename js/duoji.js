@@ -88,27 +88,28 @@
 					$(this).parent().remove();
 				}
 			});
-
-			//循环ajax方法
-			$.ajax({
-			  type: type,
-			  dataType:dataType,
-			  url: url,
-			  data: {id:id},
-			  sync: true,//设置异步模式
-			  success: function(data){
-				//console.log(data);
-				var list =data.data
-				if(data.state==='1'){
-					var option="<option value=''>请选择</option>";
-					for(var key in list){
-						option+="<option value='"+key+"'>"+list[key].areaname+"</option>";
-					}
-					$('<div class="col-md-2 pl0"><select name="'+className+'[]" num="'+num+'" class="form-control input-sm '+className+'" >'+option+'</select></div>').appendTo(box).find('select').bind('change',function(){obj.change(this)});
-				 }
-			  }
-		   });
-		   
+			
+			if(id!=''){//如果重新切回请选择不请求数据
+				//循环ajax方法
+				$.ajax({
+				  type: type,
+				  dataType:dataType,
+				  url: url,
+				  data: {id:id},
+				  sync: true,//设置异步模式
+				  success: function(data){
+					//console.log(data);
+					var list =data.data
+					if(data.state==='1'){
+						var option="<option value=''>请选择</option>";
+						for(var key in list){
+							option+="<option value='"+key+"'>"+list[key].areaname+"</option>";
+						}
+						$('<div class="col-md-2 pl0"><select name="'+className+'[]" num="'+num+'" class="form-control input-sm '+className+'" >'+option+'</select></div>').appendTo(box).find('select').bind('change',function(){obj.change(this)});
+					 }
+				  }
+			   });
+		   }
 		},
 		
 		//查询当前盒子中的信息
